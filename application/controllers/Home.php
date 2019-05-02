@@ -1,22 +1,34 @@
 <?php
-
 class Home extends CI_Controller{
+
+	function __construct()
+	{
+		parent::__construct();
+		$this->load->helper("url");
+	}
+
 
 	function index()
 	{
-		$this->load->helper("url");
-		$this->load->view("home");	
+		$pagedata = array("title"=>"Home Page", "pagename"=>"home");
+		$this->load->view("layout", $pagedata);	
 	}
 	function about()
 	{
-		$this->load->helper("url");
-		$this->load->view("about");
+		$pagedata = array("title"=>"About Page","pagename"=>"about");
+		$this->load->view("layout", $pagedata);	
 	}
 	function contact()
 	{
-		
-		$this->load->helper("url");
-		$this->load->view("contact");
+		$pagedata = array("title"=>"Contact Page", "pagename"=>"contact");
+		$this->load->view("layout", $pagedata);	
+	}
+
+
+	function login()
+	{
+		$pagedata = array("title"=>"Login Page", "pagename"=>"login");
+		$this->load->view("layout", $pagedata);		
 	}
 }
 
