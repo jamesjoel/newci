@@ -12,7 +12,7 @@
 			<li><a href="<?php echo site_url('home/index') ?>">Home</a></li>
 			<li><a href="<?php echo site_url('home/about') ?>">About</a></li>
 			<li><a href="<?php echo site_url('home/contact') ?>">Contact</a></li>
-			<li><a href="#">Help</a></li>
+			<li><a href="<?php echo site_url('home/signup');?>">Signup</a></li>
 			<li><a href="<?php echo site_url('home/login'); ?>">Login</a></li>
 		</ul>
 	</div>
