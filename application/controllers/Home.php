@@ -49,20 +49,33 @@ class Home extends CI_Controller{
 		}
 		else
 		{
-			echo "yes";
+			// $a = $_POST['full_name'];
+			$data['full_name'] = $this->input->post('full_name');
+			$data['username'] = $this->input->post('username');
+			$data['password'] = $this->input->post('pass');
+			$data['address'] = $this->input->post('add');
+			$data['gender'] = $this->input->post('gender');
+			$data['city'] = $this->input->post('city');
+			$data['contact'] = $this->input->post('contact');
+
+			// for load  modal
+			$this->load->model("usermodel");
+			// for call model function(method) and pass data array
+			$this->usermodel->insert($data);			
+			// redirect like header:location to home/login
+			redirect("home/login");
 		}
-
-
-
-
-
-
-
-
-
-
-
 			
+	}
+
+
+	function auth()
+	{
+		$u = $this->input->post("username");
+		$p = $this->input->post("pass");
+		$this->load->model("usermodel");
+		$result=$this->usermodel->select($u);
+		echo $result->num_rows();
 	}
 }
 
