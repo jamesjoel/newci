@@ -51,8 +51,9 @@ body{
 	display: inline-block;
 	background-color: #601f44;
 	text-decoration: none;
-	padding: 10px 20px;
-	margin-top:12px;
+	padding: 7px 12px;
+	margin-top:20px;
+	font-size: 14px;
 	border-radius: 5px 5px 0 0;
 	margin-left: 5px;
 	font-weight: bold;

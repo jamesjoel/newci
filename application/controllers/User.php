@@ -21,6 +21,16 @@ class User extends CI_Controller{
 		$pagedata = array("title"=>"My Account", "pagename"=>"user/my_account");
 		$this->load->view("layout", $pagedata);
 	}
+	function profile()
+	{
+		$id = $this->session->userdata("id");
+		$this->load->model("usermodel");
+		$result = $this->usermodel->select_by_id($id); //5
+
+
+		$pagedata = array("title"=>"My Profile", "pagename"=>"user/profile", "result" =>$result);
+		$this->load->view("layout", $pagedata);
+	}
 	function logout()
 	{
 		// session_destroy();

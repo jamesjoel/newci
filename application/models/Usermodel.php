@@ -20,6 +20,13 @@ class Usermodel extends CI_Model{
 		$result=$this->db->get("user");
 		return $result;
 	}	
+	function select_by_id($id)//5
+	{
+		// SELECT * FROM user WHERE id= $id
+		$this->db->where("id", $id);
+		$result = $this->db->get("user");
+		return $result;
+	}
 
 
 }
