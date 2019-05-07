@@ -19,6 +19,7 @@
 				</td>
 			</tr>
 		</table>
+		<p><?php echo $this->session->flashdata("msg"); ?></p>
 		</form>
 	</div>
 </div>

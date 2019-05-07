@@ -5,6 +5,7 @@ class Home extends CI_Controller{
 	{
 		parent::__construct();
 		$this->load->helper("url");
+		$this->load->library("session");
 	}
 
 
@@ -75,7 +76,30 @@ class Home extends CI_Controller{
 		$p = $this->input->post("pass");
 		$this->load->model("usermodel");
 		$result=$this->usermodel->select($u);
-		echo $result->num_rows();
+		if($result->num_rows()==1)
+		{
+			// $data = mysqli_fetch_assoc($result);
+			$data = $result->row_array();	
+			if($data['password']==$p)
+			{
+				$this->session->set_userdata("id", $data['id']);
+				$this->session->set_userdata("name", $data['full_name']);
+				$this->session->set_userdata("is_user_logged_in", true);
+				redirect("user");
+			}
+			else
+			{
+				$this->session->set_flashdata("msg", "This Password is Incorrect");
+				redirect("home/login");
+			}
+		}
+		else
+		{
+			// $_SESSION['msg']="This username and pa----";
+			// $this->session->set_userdata("msg", "This Usernamd and Password");
+			$this->session->set_flashdata("msg", "This Usernamd and Password Incorrect");
+			redirect("home/login");
+		}
 	}
 }
 
