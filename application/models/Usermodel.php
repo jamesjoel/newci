@@ -28,6 +28,12 @@ class Usermodel extends CI_Model{
 		return $result;
 	}
 
+	function update_by_id($id, $data)
+	{
+		$this->db->where("id", $id);
+		$this->db->update("user", $data);
+	}
+
 
 }
 

@@ -31,6 +31,38 @@ class User extends CI_Controller{
 		$pagedata = array("title"=>"My Profile", "pagename"=>"user/profile", "result" =>$result);
 		$this->load->view("layout", $pagedata);
 	}
+	function edit_profile()
+	{
+		$id = $this->session->userdata("id");
+		$this->load->model("usermodel");
+		$result = $this->usermodel->select_by_id($id); //5
+
+
+		$pagedata = array("title"=>"My Profile", "pagename"=>"user/edit_profile", "result" =>$result);
+		$this->load->view("layout", $pagedata);
+	}
+
+	function update()
+	{
+		// print_r($this->input->post());
+
+		$id = $this->session->userdata("id");
+
+		$data['full_name']=$this->input->post("full_name");
+		$data['contact']=$this->input->post("contact");
+		$data['gender']=$this->input->post("gender");
+		$data['city']=$this->input->post("city");
+		$data['address']=$this->input->post("address");
+
+		$this->load->model("usermodel");
+		$this->usermodel->update_by_id($id, $data);
+		redirect("user/profile");
+
+	}
+
+
+
+
 	function logout()
 	{
 		// session_destroy();

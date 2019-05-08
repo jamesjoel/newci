@@ -32,5 +32,6 @@
 			</tr>
 			
 		</table>
+		<a href="<?php echo site_url('user/edit_profile'); ?>">Edit Profile</a>
 	</div>
 </div>

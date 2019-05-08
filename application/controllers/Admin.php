@@ -14,24 +14,34 @@ class Admin extends CI_Controller{
 	{
 		$u = $this->input->post("username");
 		$p = $this->input->post("pass");
-		if($u=="admin")
+		
+		$this->load->model("adminmodel");
+		$result=$this->adminmodel->select_by_username($u);
+		if($result->num_rows()==1)
 		{
-			if($p=="admin")
-			{
-				$this->session->set_userdata('is_admin_logged_in', true);
-				redirect("admin/dash");
+			$data = $result->row_array();
+			if($data['password']==sha1($p))
+			{	
+				$this->session->set_userdata("id", $data['id']);
+				$this->session->set_userdata("is_user_logged_in", true);
+				redirect("admin/dashboard");
+
 			}
 			else
 			{
-				$this->session->set_flashdata("msg", 'This Password not macted');
+				$this->session->set_flashdata("msg", "This password not mached");
 				redirect("admin");		
 			}
 		}
 		else
 		{
-			$this->session->set_flashdata("msg", 'This Username and Password not macted');
+			$this->session->set_flashdata("msg", "This Username and password not mached");
 			redirect("admin");
 		}
+	}
+	function dashboard()
+	{
+		echo "yes";
 	}
 }
 
